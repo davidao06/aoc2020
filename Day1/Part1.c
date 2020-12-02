@@ -44,12 +44,12 @@ int quickSort (int v[],int N) {
 int binary_search (int v[],int N,int x) {
 	int i = 0,s = N-1;
 	while (i < s) {
-		int m = (i+s)/2;
-		if (v[m] == x) i = s = m;
+		int m = i+(s-i)/2;
+		if (v[m] == x) return m;
 		if (v[m] > x) s = m-1;
 		if (v[m] < x) i = m+1;
 	}
-	if (i > s && v[i] != x) return -1;
+	if (i >= s && v[i] != x) return -1;
 	else return i;
 }
 
@@ -58,7 +58,7 @@ int Solucao (int v[],int N) {
 	for (i = 0;i < N;i++){
 		int x = 2020-v[i];
 		int j = binary_search (v,N,x);
-		if (j != -1) return (v[i]*v[j]);
+		if (j != -1 && j != i) return (v[j]*v[i]);
 	}
 
 }
